@@ -14,7 +14,7 @@ Any changes you make to your deployed app will be automatically pushed to this r
 
 Your project is live at:
 
-**[https://vercel.com/vishals-projects-aa823dcf/v0-ai-history-tutor](https://vercel.com/vishals-projects-aa823dcf/v0-ai-history-tutor)**
+**[https://vercel.com/vishals-projects-aa823dcf/v0-ai-history-tutor](https://chronosguru.vercel.app/))**
 
 ## Build your app
 
