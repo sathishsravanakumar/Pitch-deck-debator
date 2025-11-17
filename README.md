@@ -81,9 +81,7 @@ Our system features 8 specialized AI agents, each bringing unique expertise:
 | **Next.js 14** | React framework with App Router |
 | **TypeScript** | Type-safe development |
 | **Tailwind CSS** | Utility-first styling with glassmorphism theme |
-| **Zustand** | Lightweight state management |
-| **Axios** | HTTP client for API communication |
-| **Lucide React** | Modern icon library |
+
 
 ### Backend
 | Technology | Purpose |
@@ -99,27 +97,27 @@ Our system features 8 specialized AI agents, each bringing unique expertise:
 ```
 ┌─────────────────────────────────────────────────┐
 │            Next.js Frontend (Port 3000)         │
-│  ┌─────────────┐  ┌──────────────┐            │
-│  │  HomePage   │  │  Main App    │            │
-│  │  Component  │  │  Components  │            │
-│  └─────────────┘  └──────────────┘            │
+│  ┌─────────────┐  ┌──────────────┐              │
+│  │  HomePage   │  │  Main App    │              │
+│  │  Component  │  │  Components  │              │
+│  └─────────────┘  └──────────────┘              │
 └─────────────┬───────────────────────────────────┘
               │ API Routes Proxy
               ▼
 ┌─────────────────────────────────────────────────┐
 │         FastAPI Backend (Port 8000)             │
-│  ┌──────────────┐  ┌─────────────────┐        │
-│  │ API Endpoints│  │  Multi-Agent    │        │
-│  │   /upload    │  │  Debate Engine  │        │
-│  │   /analyze   │  │  (8 AI Agents)  │        │
-│  │   /tts       │  └─────────────────┘        │
-│  └──────────────┘                              │
+│  ┌──────────────┐  ┌─────────────────┐          │ 
+│  │ API Endpoints│  │  Multi-Agent    │          │
+│  │   /upload    │  │  Debate Engine  │          │
+│  │   /analyze   │  │  (8 AI Agents)  │          │
+│  │   /tts       │  └─────────────────┘          │
+│  └──────────────┘                               │
 └─────────────┬───────────────────────────────────┘
               │
               ▼
      ┌────────────────────┐
      │  Anthropic Claude  │
-     │   API (Haiku)      │
+     │   API              │
      └────────────────────┘
 ```
 
@@ -134,57 +132,8 @@ Our system features 8 specialized AI agents, each bringing unique expertise:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/sathishsravanakumar/Claude-Hackathon.git
-cd Claude-Hackathon
+git clone https://github.com/sathishsravanakumar/Pitch-deck-debator.git
 ```
-
-### 2. Backend Setup (Python FastAPI)
-
-```bash
-# Navigate to backend directory
-cd pitch-deck-debater
-
-# Create virtual environment
-python -m venv .venv
-
-# Activate virtual environment
-# Windows:
-.venv\Scripts\activate
-# macOS/Linux:
-source .venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Create .env file
-echo "ANTHROPIC_API_KEY=your_api_key_here" > .env
-
-# Start the backend server
-python -m uvicorn api_server:app --reload
-```
-
-Backend will run on: **http://localhost:8000**
-
-### 3. Frontend Setup (Next.js)
-
-```bash
-# Navigate to frontend directory (in a new terminal)
-cd pitch-deck-debater-next
-
-# Install dependencies
-npm install
-
-# Create .env.local file
-echo "NEXT_PUBLIC_API_URL=http://localhost:8000" > .env.local
-echo "PYTHON_API_URL=http://localhost:8000" >> .env.local
-
-# Start the development server
-npm run dev
-```
-
-Frontend will run on: **http://localhost:3000**
-
----
 
 ## 🎮 Usage Guide
 
@@ -256,48 +205,6 @@ Frontend will run on: **http://localhost:3000**
 
 ---
 
-## 📁 Project Structure
-
-```
-Claude-Hackathon/
-├── pitch-deck-debater/          # Python Backend
-│   ├── agents/
-│   │   ├── coordinator.py       # Multi-agent orchestration
-│   │   ├── debate_engine.py     # Debate logic and consensus
-│   │   └── personas.py          # AI expert definitions
-│   ├── utils/
-│   │   ├── deck_parser.py       # PDF/PPTX parsing
-│   │   ├── tts_engine_edge.py   # Text-to-speech
-│   │   └── report_generator.py  # Export functionality
-│   ├── api_server.py            # FastAPI endpoints
-│   └── requirements.txt
-│
-├── pitch-deck-debater-next/     # Next.js Frontend
-│   ├── src/
-│   │   ├── app/
-│   │   │   ├── api/             # Next.js API routes
-│   │   │   ├── layout.tsx       # Root layout
-│   │   │   └── page.tsx         # Main page with routing
-│   │   ├── components/
-│   │   │   ├── HomePage.tsx     # Landing page
-│   │   │   ├── ConfigPanel.tsx  # Agent selection
-│   │   │   ├── UploadSection.tsx
-│   │   │   ├── UnifiedFeedback.tsx
-│   │   │   ├── IndividualCritiques.tsx
-│   │   │   └── Results.tsx
-│   │   ├── lib/
-│   │   │   ├── store.ts         # Zustand state
-│   │   │   └── agents.ts        # Agent definitions
-│   │   └── types/
-│   │       └── index.ts         # TypeScript types
-│   ├── package.json
-│   └── tailwind.config.ts
-│
-└── README.md                     # This file
-```
-
----
-
 ## 🔑 Environment Variables
 
 ### Backend (.env)
@@ -313,92 +220,8 @@ PYTHON_API_URL=http://localhost:8000
 
 ---
 
-## 🚨 Troubleshooting
-
-### Backend won't start
-- Ensure Python 3.10+ is installed: `python --version`
-- Check virtual environment is activated
-- Verify ANTHROPIC_API_KEY is set in .env file
-- Install missing dependencies: `pip install -r requirements.txt`
-
-### Frontend compilation errors
-- Clear Next.js cache: `rm -rf .next`
-- Reinstall dependencies: `rm -rf node_modules && npm install`
-- Check Node.js version: `node --version` (should be 18+)
-
-### API connection errors
-- Verify backend is running on port 8000
-- Check CORS settings in api_server.py
-- Ensure .env.local has correct PYTHON_API_URL
-
-### File upload fails
-- Check file size (recommended < 50MB)
-- Ensure file format is PDF or PPTX
-- Verify uploads/ directory exists in backend
-
----
-
-## 🎯 Roadmap & Future Enhancements
-
-### High Priority
-- [ ] Export to PDF with annotations
-- [ ] Batch "Analyze All Slides" functionality
-- [ ] State persistence (localStorage)
-- [ ] Toast notifications for user actions
-- [ ] Better error messages and validation
-
-### Medium Priority
-- [ ] Slide thumbnail previews
-- [ ] Search/filter across results
-- [ ] Analysis history and comparison
-- [ ] Agent preset configurations
-- [ ] Parallel agent processing for speed
-
-### Nice to Have
-- [ ] Custom agent personas
-- [ ] Real-time debate streaming
-- [ ] Collaborative editing
-- [ ] Integration with presentation software
-- [ ] Mobile app version
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! Here's how you can help:
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Commit your changes: `git commit -m 'Add amazing feature'`
-4. Push to the branch: `git push origin feature/amazing-feature`
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is built for the Anthropic Claude Hackathon.
-
----
-
-## 🙏 Acknowledgments
-
-- **Anthropic** for the Claude API and hackathon opportunity
-- **Microsoft** for Edge TTS technology
-- **Vercel** for Next.js framework
-- **FastAPI** team for the excellent Python framework
-
----
-
-## 📞 Contact & Support
-
-- **Repository**: [https://github.com/sathishsravanakumar/Claude-Hackathon](https://github.com/sathishsravanakumar/Claude-Hackathon)
-- **Issues**: [GitHub Issues](https://github.com/sathishsravanakumar/Claude-Hackathon/issues)
-
----
-
 ## ⭐ Show Your Support
 
 If you find this project helpful, please consider giving it a star on GitHub!
 
-**Built with ❤️ using Claude Haiku**  
+**Built with ❤️**  
