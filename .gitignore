@@ -49,3 +49,6 @@ pitch-deck-debater/**/__pycache__/
 # Temporary files
 *.tmp
 *.bak
+
+# Claude Code settings (keep local, not in GitHub)
+.claude/
